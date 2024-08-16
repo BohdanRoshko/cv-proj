@@ -19,6 +19,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { ResumeComponent } from './pages/resume/resume.component';
+import { SecretModalComponent } from './pages/components/secret-modal/secret-modal.component';
 
 
 
@@ -32,7 +33,8 @@ import { ResumeComponent } from './pages/resume/resume.component';
     ResumeComponent,
     ContactComponent,
     ProjectCardComponent,
-    ProjectModalComponent
+    ProjectModalComponent,
+    SecretModalComponent
   ],
   imports: [
     BrowserModule,

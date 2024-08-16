@@ -5,6 +5,8 @@ import { ProjectsService } from '../../_services/projects.service';
 import { Tag } from '../../_models/Tag';
 import { TagsService } from '../../_services/tags.service';
 import { TagFilter } from '../../_models/TagFilter';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { SecretModalComponent } from '../components/secret-modal/secret-modal.component';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,7 +15,7 @@ import { TagFilter } from '../../_models/TagFilter';
 })
 export class PortfolioComponent implements OnInit{
   public Tag = Tag; // Exposing Tag to the template
-  
+  bsModalRef? : BsModalRef;
   projects = {} as Project[];
   isCollapsed: boolean = true;
 
@@ -22,7 +24,10 @@ export class PortfolioComponent implements OnInit{
   public selectedTags: TagFilter[] = [];
   public filterText: string = '';  
 
-  constructor(private titleService: Title, private projectService: ProjectsService, private tagService: TagsService){
+  constructor(private titleService: Title,
+     private projectService: ProjectsService,
+     private tagService: TagsService,
+     private modalService: BsModalService){
     this.titleService.setTitle("Bohdan Roshko - Portfolio")
   }
 
@@ -45,7 +50,11 @@ export class PortfolioComponent implements OnInit{
     this.Filter();
   }
   onFilterTextChange(): void {
-    this.Filter();
+    if(this.filterText === "1488"){
+      this.ShowSecret();
+    }else{
+      this.Filter();
+    }
   }
   clearFilterText(): void {
     this.filterText = '';
@@ -62,4 +71,11 @@ export class PortfolioComponent implements OnInit{
   Filter(): void {
     this.projects = this.projectService.GetFiltered(this.selectedTags, this.filterText);
   }
+  ShowSecret(): void{
+    const modalOptions: ModalOptions ={
+      class: "modal-lg",
+    };
+    this.bsModalRef == this.modalService.show(SecretModalComponent,modalOptions);
+  }
+
 }
