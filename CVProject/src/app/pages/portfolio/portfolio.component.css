@@ -10,3 +10,18 @@
 .input-group .form-control {
     padding-right: 40px;
 }
+
+@media (max-width: 1890px) {
+    .filter-btn {
+        display: none;
+    }
+    .input-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1891px) {
+    .input-container {
+        width: 90%;
+    }
+}

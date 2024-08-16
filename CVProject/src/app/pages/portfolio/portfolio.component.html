@@ -40,7 +40,9 @@
                         
                     </div>
                 </form>
-                <button class="btn btn-outline-secondary " (click)="ResetFilters()" [hidden]="selectedTags.length < 1">Reset</button>
+                <div class="d-flex justify-content-center my-2">
+                    <button class="btn btn-outline-secondary" (click)="ResetFilters()" [hidden]="selectedTags.length < 1">Reset</button>
+                </div>
             </div>
         </div>
     </div>
@@ -48,9 +50,9 @@
     <div class="container">
         <div class="row mb-3 justify-content-center align-items-center">
             <div class="col-auto" style="margin-right: auto;">
-                <button class="btn btn-outline-primary me-2" (click)="isCollapsed = !isCollapsed">Filter</button>
+                <button class="btn btn-outline-primary me-2 filter-btn" (click)="isCollapsed = !isCollapsed">Filter</button>
             </div>
-            <div style="width: 90%;">
+            <div class="input-container">
                 <div class="input-group">
                     <input 
                         style=""
