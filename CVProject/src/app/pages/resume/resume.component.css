@@ -1,0 +1,11 @@
+.pdf-content {
+    height: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 1050px) {
+    .pdf-content {
+        direction: rtl;
+        margin-right: 4rem;
+    }
+}

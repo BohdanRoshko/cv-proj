@@ -1,0 +1,75 @@
+<div class="position-relative">
+    <div>
+        <div [collapse]="isCollapsed" [isAnimated]="true">
+            <div class="position-absolute border mb-2 shadow-sm" style="width: 250px; left: 130px;">
+                <form action="">
+                    <div class="row mx-0">
+                        <div class="col">
+                            <small>
+                                <b>Languages:</b>
+                            </small>
+                            <div class="form-group">
+                                <div class="form-check" *ngFor="let tagFilter of languageTags">
+                                    <input 
+                                        type="checkbox" 
+                                        class="form-check-input position-static me-2"
+                                        [checked]="tagFilter.checked"
+                                        (change)="onCheckboxChange($event, tagFilter)"
+                                        [name]="tagFilter.tag.key">
+                                    <label class="form-check-label small">{{ tagFilter.tag.key }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col">
+                            <small>
+                                <b>Frameworks:</b>
+                            </small>
+                            <div class="form-group">
+                                <div class="form-check" *ngFor="let tagFilter of frameworkTags">
+                                    <input 
+                                        type="checkbox" 
+                                        class="form-check-input position-static me-2"
+                                        [checked]="tagFilter.checked"
+                                        (change)="onCheckboxChange($event, tagFilter)"
+                                        [name]="tagFilter.tag.key">
+                                    <label class="form-check-label small">{{ tagFilter.tag.key }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+                <button class="btn btn-outline-secondary " (click)="ResetFilters()" [hidden]="selectedTags.length < 1">Reset</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row mb-3 justify-content-center align-items-center">
+            <div class="col-auto" style="margin-right: auto;">
+                <button class="btn btn-outline-primary me-2" (click)="isCollapsed = !isCollapsed">Filter</button>
+            </div>
+            <div style="width: 90%;">
+                <div class="input-group">
+                    <input 
+                        style=""
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Search..." 
+                        [(ngModel)]="filterText" 
+                        (input)="onFilterTextChange()" />
+                    <button *ngIf="filterText" class="btn-close"
+                    type="button" (click)="clearFilterText()"></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div *ngFor="let project of projects" class="col-lg-4 col-md-6 mb-4" style="max-width: 380px; min-width: 380px;">
+                <app-project-card [project]="project"></app-project-card>
+            </div>
+        </div>
+    </div>
+    
+</div>

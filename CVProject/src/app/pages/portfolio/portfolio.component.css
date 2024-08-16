@@ -1,0 +1,12 @@
+.input-group{
+    position: relative;
+}
+
+.input-group .btn-close{
+    position: absolute;
+    right: 10px;
+    top: 6px;
+}
+.input-group .form-control {
+    padding-right: 40px;
+}
