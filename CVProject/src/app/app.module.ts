@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { ResumeComponent } from './pages/resume/resume.component';
 import { SecretModalComponent } from './pages/components/secret-modal/secret-modal.component';
+import { API_BASE_URL } from './infrastructure/nswag/api';
 
 
 
@@ -47,7 +48,9 @@ import { SecretModalComponent } from './pages/components/secret-modal/secret-mod
     CarouselModule.forRoot(),
     CollapseModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: API_BASE_URL, useValue: 'https://localhost:7046' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Project } from 'src/app/_models/Project';
+import { firstValueFrom } from 'rxjs';
 import { ProjectsService } from 'src/app/_services/projects.service';
+import { Project } from 'src/app/infrastructure/nswag/api';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private titleService: Title, private projectService: ProjectsService ){
     this.titleService.setTitle("Bohdan Roshko - Home")
   }
-  ngOnInit(): void {
-    this.featuredProject = this.projectService.Get(0);
+  async ngOnInit(): Promise<void> {
+    this.featuredProject = await firstValueFrom(this.projectService.Get(0)); 
   }
 }

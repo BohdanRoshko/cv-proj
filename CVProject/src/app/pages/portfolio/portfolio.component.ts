@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Project } from '../../_models/Project';
 import { ProjectsService } from '../../_services/projects.service';
-import { Tag } from '../../_models/Tag';
 import { TagsService } from '../../_services/tags.service';
 import { TagFilter } from '../../_models/TagFilter';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { SecretModalComponent } from '../components/secret-modal/secret-modal.component';
+import { Project, Tag } from 'src/app/infrastructure/nswag/api';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-portfolio',
@@ -31,8 +31,8 @@ export class PortfolioComponent implements OnInit{
     this.titleService.setTitle("Bohdan Roshko - Portfolio")
   }
 
-  ngOnInit(): void {
-    this.projects = this.projectService.GetProjectListing();
+  async ngOnInit(): Promise<void> {
+    this.projects = await firstValueFrom( this.projectService.GetProjectListing());
     this.languageTags = this.tagService.getLanguageTags().map(tag => new TagFilter(tag));
     this.frameworkTags = this.tagService.getFrameworkTags().map(tag => new TagFilter(tag));
   }
@@ -68,8 +68,8 @@ export class PortfolioComponent implements OnInit{
     this.Filter();
   }
 
-  Filter(): void {
-    this.projects = this.projectService.GetFiltered(this.selectedTags, this.filterText);
+  async Filter(): Promise<void> {
+    this.projects =  await this.projectService.GetFiltered(this.selectedTags, this.filterText) ;
   }
   ShowSecret(): void{
     const modalOptions: ModalOptions ={

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Project } from 'src/app/_models/Project';
+import { Project } from 'src/app/infrastructure/nswag/api';
 
 @Component({
   selector: 'app-project-modal',

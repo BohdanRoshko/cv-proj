@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
-import { Project } from 'src/app/_models/Project';
+import { Project } from 'src/app/infrastructure/nswag/api';
 
 @Component({
   selector: 'app-project-card',
